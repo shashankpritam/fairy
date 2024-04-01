@@ -1,22 +1,14 @@
 # fairy - fast approximate contig coverage for metagenomic binning
 
-## Introduction - multi-sample coverage problem
+**Fairy** computes **multi-sample** contig coverage for metagenome-assembled genome (MAG) binning. 
 
-After metagenomic assembly, optimal workflows require aligning **all metagenomic reads** against all assemblies to obtain coverages. Then, metagenome-assembled genomes (MAGs) are generated using a binner like [metabat2](https://bitbucket.org/berkeleylab/metabat). 
+Fairy is used after metagenomic assembly and before binning. It can
 
-Unfortunately, all-to-all alignment of samples to assemblies **is very slow**.
+* Calculate coverage 100x-1000x faster than read alignment (e.g. BWA) for coverage calculation
+* Give comparable bins for **multi-sample** binning and short read or nanopore reads
+* Output formats that are compatible with MetaBAT2, MaxBin2, and more
 
-**Fairy** resolves this bottleneck by using a fast k-mer alignment-free method to obtain coverage instead of aligning reads. Fairy's coverages are correlated with aligners (but still approximate). However, **fairy is 10-1000x faster than BWA for all-to-all coverage calculation**. 
-
-### Important: fairy is designed for **multi-sample** usage and short reads or nanopore reads. Do not use fairy for **single-sample** binning. 
-
-### Short-reads 
-Fairy seems to be comparable to [BWA](https://github.com/lh3/bwa) for **multi-sample** binning (maybe a +5% to -15% loss in sensitivity). Preliminary testing indicates that fairy may perform as good as (and sometimes better than) BWA on host-associated datasets and slightly worse (but usable) on environmental datasets.
-
-### Long-reads
-**Non-HiFi:** For simplex nanopore reads, fairy seems to be comparable with minimap2. 
-
-**HiFi (strain-resolved assemblies)**: Fairy is worse than minimap2 for strain-resolved assemblies when using >99.9% identity reads (using e.g. hifiasm or meta-mdbg). 
+See [here for additional information/context about fairy](https://github.com/bluenote-1577/fairy/wiki/Introduction-to-fairy).
 
 ##  Install (current version v0.5.3)
 
@@ -61,6 +53,7 @@ Note: the binary is compiled with a different set of libraries (musl instead of 
 
 ## Quick start
 
+### Step 1: Index reads
 ```sh
 # sketch/index short reads
 fairy sketch -1 *_1.fastq.gz -2 *_2.fastq.gz -d sketch_dir
@@ -70,11 +63,24 @@ fairy sketch -r long_reads.fq -d sketch_dir
 
 # rename the sketches if filenames are identical
 fairy sketch -r dir1/reads.fq dir2/reads.fq -S sample1 sample2 -d sketch_dir
-
-# calculate coverage
-fairy coverage sketch_dir/*.bcsp contigs.fa -t 10 -o coverage.tsv
 ```
 
+### Step 2: Calculate coverage
+```sh
+# calculate coverage
+fairy coverage sketch_dir/*.bcsp contigs1.fa -t 10 -o coverage1.tsv
+fairy coverage sketch_dir/*.bcsp contigs2.fa -t 10 -o coverage2.tsv
+```
+
+### Step 3: Bin
+```sh
+# default format is compatible with metabat2
+metabat2 -i contigs1.fa -a coverage1.tsv ...
+metabat2 -i contigs2.fa -a coverage2.tsv ...
+
+# see -h for usage with maxbin2, etc
+...
+```
 ## Output
 
 ### MetaBAT2 format (default)
