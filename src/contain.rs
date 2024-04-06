@@ -291,6 +291,10 @@ pub fn contain(mut args: ContainArgs, pseudotax_in: bool) {
         std::process::exit(1);
     }
 
+    if genome_sketches_vec.len() > 1 {
+        log::warn!("Multiple contigs files found. The output will contain multiple TSV headers and is not a valid TSV file.");
+    }
+
     let step;
     if let Some(sample_threads) = args.sample_threads{
         if sample_threads > 0{
