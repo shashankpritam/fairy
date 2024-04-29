@@ -10,7 +10,7 @@ Fairy is used after metagenomic assembly and before binning. It can
 
 **Caveats**: 
 
-* Use alignment instead of fairy for single-sample binning or co-assembly
+* Don't use fairy for single-sample binning
 * Don't use fairy for PacBio HiFi
 
 See [here for results and additional information/context about fairy](https://github.com/bluenote-1577/fairy/wiki/Introduction-to-fairy).
