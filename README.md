@@ -8,6 +8,11 @@ Fairy is used after metagenomic assembly and before binning. It can
 * Give comparable bins for **multi-sample** binning and short read or nanopore reads
 * Output formats that are compatible with MetaBAT2, MaxBin2, and more
 
+Caveats: 
+
+* Use alignment over fairy for single-sample binning or co-assembly
+* Don't use fairy for PacBio HiFi
+
 See [here for results and additional information/context about fairy](https://github.com/bluenote-1577/fairy/wiki/Introduction-to-fairy).
 
 ##  Install (current version v0.5.3)
