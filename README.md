@@ -18,6 +18,8 @@ See [here for results and additional information/context about fairy](https://gi
 ##  Install (current version v0.5.3)
 
 #### Option 1: conda install 
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/fairy/badges/version.svg)](https://anaconda.org/bioconda/fairy)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/fairy/badges/latest_release_date.svg)](https://anaconda.org/bioconda/fairy)
 
 ```sh
 mamba install -c bioconda fairy
