@@ -111,4 +111,4 @@ Alternatively, `--maxbin-format` works directly with MaxBin2 and is also availab
 
 ## Citing fairy
 
-Forthcoming.
+Jim Shaw, Yun William Yu. Fairy: fast approximate coverage for multi-sample metagenomic binning (2024). bioRxiv.
