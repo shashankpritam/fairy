@@ -15,7 +15,7 @@ Fairy is used after metagenomic assembly and before binning. It can
 
 See [here for results and additional information/context about fairy](https://github.com/bluenote-1577/fairy/wiki/Introduction-to-fairy).
 
-##  Install (current version v0.5.3)
+##  Install (current version v0.5.4)
 
 #### Option 1: conda install 
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/fairy/badges/version.svg)](https://anaconda.org/bioconda/fairy)
@@ -27,6 +27,8 @@ mamba install -c bioconda fairy
 ```
 
 **Warning**: If you're using linux, conda may require AVX2 instructions (e.g. a newer CPU). Source install (option 2) and the static binary (option 3) should still work. 
+
+**Warning 2**: Bioconda install may be [broken right now](https://github.com/bluenote-1577/fairy/issues/1). Option 2/3 should still work. 
 
 #### Option 2: Build from source
 
