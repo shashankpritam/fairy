@@ -1,7 +1,7 @@
 use clap::{Args, Parser, Subcommand};
 
 #[derive(Parser)]
-#[clap(author, version, about = "Approximate metagenomic coverage calculation for contigs.\n\n## index paired-end reads\nfairy sketch -1 a_1.fq b_1.fq -2 b_2.fq b_2.fq -d sketches\n\n## coverage matrix output\nfairy coverage -t 30 sketches/*.bcsp contigs1.fa -o coverage_matrix.tsv", arg_required_else_help = true, disable_help_subcommand = true)]
+#[clap(author, version, about = "Approximate metagenomic coverage calculation for contigs.\n\n## index paired-end reads\nfairy sketch -1 a_1.fq b_1.fq -2 a_2.fq b_2.fq -d sketches\n\n## coverage matrix output\nfairy coverage -t 30 sketches/*.bcsp contigs1.fa -o coverage_matrix.tsv", arg_required_else_help = true, disable_help_subcommand = true)]
 pub struct Cli {
     #[clap(subcommand,)]
     pub mode: Mode,
