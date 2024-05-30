@@ -122,7 +122,7 @@ fairy coverage contigs1.fa reads2.bcsp --aemb-format -o cov_aemb2.tsv
 SemiBin2 single_easy_bin -i contigs.fa cov_aemb*.tsv -o results 
 ```
 > [!TIP]
-> SemiBin2 requires *separate* coverage files for each read sample -- other tools require a *single coverage matrix*. 
+> **Fairy usage for SemiBin2 is different than other tools**: SemiBin2 requires *separate* coverage files for each read sample -- other tools require a *single coverage matrix*. 
 
 ### MaxBin2 format
 
