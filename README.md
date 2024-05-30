@@ -13,9 +13,10 @@ Fairy is used after metagenomic assembly and before binning. It can
 * Don't use fairy for single-sample binning
 * Don't use fairy for PacBio HiFi
 
-See [here for results and additional information/context about fairy](https://github.com/bluenote-1577/fairy/wiki/Introduction-to-fairy).
+> [!NOTE]  
+> See [here for results and additional information/context about fairy](https://github.com/bluenote-1577/fairy/wiki/Introduction-to-fairy).
 
-##  Install (current version v0.5.4)
+##  Install (current version v0.5.5)
 
 #### Option 1: conda install 
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/fairy/badges/version.svg)](https://anaconda.org/bioconda/fairy)
@@ -26,9 +27,8 @@ mamba install -c bioconda fairy
 # conda install -c bioconda fairy
 ```
 
-**Warning**: If you're using linux, conda may require AVX2 instructions (e.g. a newer CPU). Source install (option 2) and the static binary (option 3) should still work. 
-
-**Warning 2**: Bioconda install may be [broken right now](https://github.com/bluenote-1577/fairy/issues/1). Option 2/3 should still work. 
+> [!WARNING]  
+> If you're using linux, conda may require AVX2 instructions (e.g. a newer CPU) or [have issues](https://github.com/bluenote-1577/fairy/issues/1). Source install (option 2) and the static binary (option 3) should still work.
 
 #### Option 2: Build from source
 
@@ -87,8 +87,12 @@ fairy coverage sketch_dir/*.bcsp contigs2.fa -t 10 -o coverage2.tsv
 metabat2 -i contigs1.fa -a coverage1.tsv ...
 metabat2 -i contigs2.fa -a coverage2.tsv ...
 
-# maxbin2 is also usable (requires different options; see below)
+# maxbin2 (requires different options; see below)
 maxbin2 ...
+
+# SemiBin2 (requires different options; see below)
+SemiBin2 single_easy_bin -i contigs1.fa -a cov_aemb_1.tsv cov_aemb_2.tsv ...
+
 ```
 ## Output
 
@@ -106,6 +110,19 @@ contig_1    38370      1.4            1.4        1.1100          0       0
 2. The next columns are `mean coverage` and `coverage variance` for each sample.
 
 The above output can be fed directly into MetaBAT2 with default parameters. 
+
+### SemiBin2 format
+
+Since fairy v0.5.5 and [SemiBin v2.1](https://github.com/BigDataBiology/SemiBin), you can use SemiBin as follows
+
+```sh
+fairy coverage contigs1.fa reads1.bcsp --aemb-format -o cov_aemb1.tsv
+fairy coverage contigs1.fa reads2.bcsp --aemb-format -o cov_aemb2.tsv
+...
+SemiBin2 single_easy_bin -i contigs.fa cov_aemb*.tsv -o results 
+```
+> [!TIP]
+> SemiBin2 requires *separate* coverage files for each read sample -- other tools require a *single coverage matrix*. 
 
 ### MaxBin2 format
 
