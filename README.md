@@ -28,7 +28,7 @@ mamba install -c bioconda fairy
 ```
 
 > [!WARNING]  
-> If you're using linux, conda may require AVX2/AVX512 instructions (e.g. a newer CPU) or [have issues](https://github.com/bluenote-1577/fairy/issues/1). Source install (option 2) and the static binary (option 3) should still work.
+> If you're using linux, AVX512 instructions (e.g. a newer CPU) [may be required](https://github.com/bluenote-1577/fairy/issues/1) for conda. Source install (option 2) and the static binary (option 3) will work for any CPU.
 
 #### Option 2: Build from source
 
