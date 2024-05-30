@@ -1,3 +1,7 @@
+## fairy v0.5.5
+
+* Added the --aemb_format option which is the same as strobealign's format (for single samples).
+
 ## fairy v0.5.4
 
 Updating to try and fix bioconda bug. 

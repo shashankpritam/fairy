@@ -35,23 +35,28 @@ fn print_cov_matrix(ani_results: Vec<AniResult>, read_files: &FxHashSet<String>,
 
     //sort(&mut contig_list_sorted);
     sort(&mut read_list_sorted);
+    let no_var_and_mean = args.concoct_format | args.aemb_format;
 
     if args.concoct_format{
         write!(writer, "contigName").unwrap();
         for read_name in read_list_sorted.iter(){
             write!(writer, "\t{}", read_name).unwrap();
         }
+        write!(writer, "\n").unwrap();
+    }
+    else if args.aemb_format{
     }
     else{
         write!(writer, "contigName\tcontigLen\ttotalAvgDepth").unwrap();
         for read_name in read_list_sorted.iter(){
             write!(writer, "\t{}\t{}-var", read_name, read_name).unwrap();
         }
+        write!(writer, "\n").unwrap();
     }
-    write!(writer, "\n").unwrap();
+
     for contig in contig_list_sorted{
         write!(writer, "{}", contig.split(' ').collect::<Vec<&str>>()[0]).unwrap();
-        if !args.concoct_format{
+        if !no_var_and_mean{
             write!(writer, "\t{}", contig_to_size[contig]).unwrap();
         }
         let mut avg_cov = 0.;
@@ -63,11 +68,11 @@ fn print_cov_matrix(ani_results: Vec<AniResult>, read_files: &FxHashSet<String>,
         else{
         }
         avg_cov /= read_list_sorted.len() as f64;
-        if !args.concoct_format{
+        if !no_var_and_mean{
             write!(writer, "\t{}", avg_cov).unwrap();
         }
         for read in read_list_sorted.iter(){
-            if !args.concoct_format{
+            if !no_var_and_mean{
                 if matrix.contains_key(contig) && matrix[contig].contains_key(read){
                     let (cov, var) = matrix[&contig][read];
                     write!(writer, "\t{}\t{}", cov, var).unwrap();
