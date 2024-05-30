@@ -117,4 +117,7 @@ pub struct ContainArgs {
     pub out_file_name: Option<String>,
     #[clap(long="maxbin-format", help = "Remove contig length, average depth, and variance columns. (default: MetaBAT2 format with variances)", help_heading="OUTPUT")]
     pub concoct_format: bool,
+    #[clap(long="aemb-format", help = "Strobealign --aemb format (default: MetaBAT2 format with variances)", help_heading="OUTPUT")]
+    pub aemb_format: bool,
+
 }
