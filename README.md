@@ -111,7 +111,7 @@ contig_1    38370      1.4            1.4        1.1100          0       0
 
 The above output can be fed directly into MetaBAT2 with default parameters. 
 
-### SemiBin2 format
+### SemiBin2 format (--aemb-format option)
 
 Since fairy v0.5.5 and [SemiBin v2.1](https://github.com/BigDataBiology/SemiBin), you can use SemiBin as follows
 
